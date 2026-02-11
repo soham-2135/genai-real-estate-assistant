@@ -36,6 +36,7 @@ This demonstrates dynamic web ingestion + semantic retrieval + LLM reasoning ins
 - Python 3.10+
 - Streamlit
 - RAG Architecture
+- Langchain
 - ChromaDB (Vector Database)
 - LLM (OpenAI / Groq / Gemini depending on configuration)
 
