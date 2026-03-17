@@ -11,7 +11,7 @@ import shutil
 
 load_dotenv()
 CHUNK_SIZE = 1000
-EMBEDDING_MODEL = "Alibaba-NLP/gte-base-en-v1.5"
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 COLLECTION_NAME = "real_estate"
 VECTORSTORE_DIR = Path(__file__).parent / "resources/vectorstore"
 
@@ -21,11 +21,11 @@ vector_store = None
 def initilaize_components():
     global llm, vector_store
     if llm is None:
-        llm = ChatGroq(model_name="llama-3.3-70b-versatile", temperature = 0.9, max_tokens=500)
+        import os
+        llm = ChatGroq(groq_api_key=os.getenv("GROQ_API_KEY"),model_name="llama-3.3-70b-versatile", temperature = 0.9, max_tokens=500)
 
     ef = HuggingFaceEmbeddings(
         model_name = EMBEDDING_MODEL,
-        model_kwargs ={'trust_remote_code' : True}
     )
 
     if vector_store is None:
